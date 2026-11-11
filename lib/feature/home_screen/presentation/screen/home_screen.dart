@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("All Users", style: AppStyle.regular14Grey),
+                      Text("List of Users", style: AppStyle.regular14Grey),
                       Icon(Icons.people, size: 16, color: AppColors.greyColor),
                     ],
                   ),BlocConsumer<UserCubit, UserState>(
