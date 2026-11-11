@@ -1,35 +1,30 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task1/feature/home_screen/data/model/user_response.dart';
 import 'package:task1/feature/home_screen/data/repo/user_repo.dart';
 import 'package:task1/feature/home_screen/presentation/cubit/user_state.dart';
 
 
 import 'dart:developer';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task1/feature/home_screen/data/repo/user_repo.dart';
-import 'package:task1/feature/home_screen/presentation/cubit/user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserInitState());
 
-  Future<void> getUsers() async {
-    if (isClosed) return;
-
+  Future<UserResponse?> getUsers() async {
     emit(UserLoadingState());
 
     try {
       final response = await UserRepo.getUsers();
 
-      if (isClosed) return;
 
       emit(UserSuccessState(data: response));
-    } catch (e, stackTrace) {
+    } catch (e) {
       log('Cubit Error: $e');
-      log('Stack Trace: $stackTrace');
 
-      if (isClosed) return;
+      if (isClosed) return null;
 
       emit(UserErrorState(errorMsg: e.toString()));
     }
+    return null;
   }
 }

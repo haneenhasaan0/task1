@@ -6,6 +6,7 @@ import 'package:task1/feature/home_screen/presentation/wdget/custom_form_field.d
 import 'package:task1/feature/home_screen/presentation/wdget/users.dart';
 
 import '../../../../core/show_snak_bar/show_snack_bar.dart';
+import '../../data/model/user_response.dart';
 import '../cubit/user_cubit.dart';
 import '../cubit/user_state.dart';
 import '../wdget/shimmer.dart';
@@ -57,7 +58,9 @@ class HomeScreen extends StatelessWidget {
                           .split(' ')
                           .map((word) => word[0])
                           .join();
-                      return Users(name: state.data?[index].name ?? "",
+                      return Users(
+                        user: state.data![index] ,
+                        name: state.data?[index].name ?? "",
                         email: state.data?[index].email ?? "",summary: initials??"",);
                     },
                     separatorBuilder: (context, index) {

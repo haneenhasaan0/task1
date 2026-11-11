@@ -9,13 +9,12 @@ import '../../../details_screen/presentation/screen/details_sreen.dart';
 import '../../data/model/user_response.dart';
 
 class Users extends StatelessWidget {
-  const Users({super.key, required this.name, required this.email,required this.summary});
+  const Users({super.key, required this.name, required this.email,required this.summary, required this.user});
 
   final String name, email,summary;
-
+  final UserResponse user;
   @override
   Widget build(BuildContext context) {
-    final user = GoRouterState.of(context).extra as UserResponse;
     return InkWell(
       onTap: (){
         context.push(AppRoutes.detailsScreen,extra: user);      },

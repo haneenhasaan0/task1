@@ -7,19 +7,11 @@ class ApiProvider {
   static void init() {
     dio = Dio(BaseOptions(
       baseUrl: ApiConstants.baseUrl,
-      connectTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
-      sendTimeout: const Duration(seconds: 30),
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36',
-        'Accept': 'application/json',
-      },
     ));
   }
 
   static Future<Response<dynamic>> get({
     required String endPoint,
-    Object? data,
     Map<String, dynamic>? queryParam,
     Map<String, dynamic>? header,
   }) async {
@@ -30,7 +22,6 @@ class ApiProvider {
         endPoint,
         options: Options(headers: header),
         queryParameters: queryParam,
-        data: data,
       );
 
       print('STATUS CODE: ${response.statusCode}');

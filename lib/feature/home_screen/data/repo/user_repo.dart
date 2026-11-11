@@ -9,7 +9,12 @@ import '../../../../core/services/api_provider/api_provider.dart';
 class UserRepo {
   static Future<List<UserResponse>?> getUsers() async {
     try {
-      var response = await ApiProvider.get(endPoint: ApiConstants.user);
+      var response = await ApiProvider.get(endPoint: ApiConstants.user,
+          // header: {
+          //   'User-Agent': 'PostmanRuntime/7.56.1',
+          //   'Accept': '*/*',
+          // }
+          );
       if (response.statusCode == 200) {
         try {
           print(' API DATA = ${response.data}');
